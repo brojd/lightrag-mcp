@@ -45,6 +45,8 @@ The following arguments are available when configuring the server in mcp-config.
 - `--host`: LightRAG API host (default: localhost)
 - `--port`: LightRAG API port (default: 9621)
 - `--api-key`: LightRAG API key (optional)
+- `--scheme`: HTTP scheme, either `http` or `https` (default: http)
+- `--no-verify-ssl`: Disable SSL certificate verification for HTTPS connections (optional)
 
 ### Integration with LightRAG API
 
@@ -78,6 +80,29 @@ To set up LightRAG MCP as an MCP server, add the following configuration to your
         "localhost",
         "--port",
         "9621",
+        "--api-key",
+        "your_api_key"
+      ]
+    }
+  }
+}
+```
+
+#### Using HTTPS (for remote LightRAG servers):
+
+```json
+{
+  "mcpServers": {
+    "lightrag-mcp": {
+      "command": "uvx",
+      "args": [
+        "lightrag_mcp",
+        "--scheme",
+        "https",
+        "--host",
+        "lightrag.example.com",
+        "--port",
+        "443",
         "--api-key",
         "your_api_key"
       ]

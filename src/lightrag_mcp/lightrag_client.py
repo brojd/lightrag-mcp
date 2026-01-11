@@ -76,6 +76,7 @@ class LightRAGClient:
         self,
         base_url: str,
         api_key: str,
+        verify_ssl: bool = True,
     ):
         """
         Initialize LightRAG API client.
@@ -83,11 +84,12 @@ class LightRAGClient:
         Args:
             base_url (str): Base API URL.
             api_key (str): API key (token).
+            verify_ssl (bool): Whether to verify SSL certificates. Default is True.
         """
         self.base_url = base_url
         self.api_key = api_key
-        self.client = AuthenticatedClient(base_url=base_url, token=api_key, verify_ssl=False)
-        logger.info(f"Initialized LightRAG API client: {base_url}")
+        self.client = AuthenticatedClient(base_url=base_url, token=api_key, verify_ssl=verify_ssl)
+        logger.info(f"Initialized LightRAG API client: {base_url} (verify_ssl={verify_ssl})")
 
     async def _handle_exception(self, e: Exception, operation_name: str) -> None:
         """

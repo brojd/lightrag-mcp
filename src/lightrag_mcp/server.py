@@ -68,6 +68,7 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
     lightrag_client = LightRAGClient(
         base_url=config.LIGHTRAG_API_BASE_URL,
         api_key=config.LIGHTRAG_API_KEY,
+        verify_ssl=config.LIGHTRAG_VERIFY_SSL,
     )
 
     try:
